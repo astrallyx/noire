@@ -1,0 +1,25 @@
+{
+  "name": "noire",
+  "version": "0.0.1",
+  "description": "A bot command framework",
+  "main": "bot",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunistaz/noire.git"
+  },
+  "keywords": [
+    "discord"
+  ],
+  "author": "SuniStaZ",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sunistaz/noire/issues"
+  },
+  "homepage": "https://github.com/sunistaz/noire#readme",
+  "dependencies": {
+    "eris": "^0.7.0"
+  }
+}

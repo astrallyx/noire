@@ -1,5 +1,6 @@
 "use strict";
 const fs = require("fs");
+const config = require(__dirname + "/../config.json");
 var EventEmitter;
 try {
 EventEmitter = require('eventemitter3');
@@ -26,7 +27,7 @@ class Command extends EventEmitter {
     checkMFC(msg) {
         var command = msg.content.split(this.bot.prefix)[1].split(" ")[0];
         msg.content = msg.content.replace(this.bot.prefix + command + " ", "");
-        if(this.commands) this.commands[command].code(this.bot, msg);
+        if(this.commands) this.commands[command].code(this.bot, msg, config);
         
     }
 }

@@ -2,5 +2,6 @@
     "token": "",
     "owner_id": "",
     "prefix": "/",
+    "shard_max": false,
     "detailed_logging": false
 }

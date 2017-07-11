@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/sunistaz/noire#readme",
   "dependencies": {
-    "eris": "^0.7.0"
+    "bluebird": "^3.5.0",
+    "eris": "^0.7.0",
+    "request": "^2.81.0"
   }
 }

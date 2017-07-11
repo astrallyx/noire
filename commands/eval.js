@@ -1,8 +1,8 @@
 "use strict";
 const util = require("util")
 module.exports = {
-    code: function(bot, msg) {
-		if (msg.author.id == bot.owner_id) {
+    code: function(bot, msg, config) {
+		if (config.admins.indexOf(msg.author.id) || msg.author.id == config.owner_id) {
 		    let args = msg.content.split(`${bot.prefix}eval `).join("")
             try {
                 let ev = eval(args)
@@ -11,10 +11,17 @@ module.exports = {
                 bot.createMessage(msg.channel.id, `:white_check_mark: | **Evaluation Result**: (Success)\n${"```js\n"}${str}${"\n```"}`)
             } catch (err) {
                 bot.createMessage(msg.channel.id, `:warning: | **Evaluation Result**: (Error)\n${"```js\n"}${err}${"\n```"}`)
+            } finally {
+                let start = Date.now();
+                bot.createMessage(msg.channel.id, "...").then((m) => {
+                    let end = Date.now();
+                    let ms = end - start
+                    m.edit("Executed in " + ms + "ms.")
+                })
             }
 		}
     },
-    description: 'Ping the bot',
+    description: 'Execute an Eval.',
     args: "<code>", 
     hidden: false
 };

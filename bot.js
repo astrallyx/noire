@@ -1,9 +1,25 @@
 "use strict";
+
 const Eris = require("eris");
-const config = require(__dirname + "/config.json");
 const fs = require("fs")
-const bot = new Eris(config.token, {})
-const ch = require(__dirname + "/handlers/commandHandler.js"), commandHandler = new ch(bot);
+
+const config = require(__dirname + "/config.json");
+const sg = require(__dirname + "/handlers/shardGenerator.js"), shardGenerator = new sg(0)
+const logs = require(__dirname + "/handlers/logManager.js"), lm = new logs();
+// lm.run(); (Deprecated for now)
+
+const bot = new Eris(config.token, {
+    firstShardID: 0,
+    maxShards: config.shard_max || 1
+})
+
+bot.sharding = {
+    shard_max: config.shard_max,
+    shards: []
+};
+
+const am = require(__dirname + "/handlers/adminManager.js"), adminManager = new am(config.admins, bot)
+const ch = require(__dirname + "/handlers/commandHandler.js"), commandHandler = new ch(bot)
 bot.logging = config.detailed_logging;
 bot.prefix = config.prefix
 bot.owner_id = config.owner_id
@@ -39,8 +55,26 @@ commands.help.code = function(bot, msg) {
     })
     
 }
+
+bot.on("shardReady", (id) => {
+    lm.info(`Shard [${id}] ready for use!`)
+    console.log(`Shard [${id}] ready for use!`)
+    bot.shards.forEach((s) => {
+        if (s.id == id) {
+            bot.sharding.shards.push({
+                shard_id: id,
+                shard_owner: bot.user.username
+            })
+        }
+    })
+})
+
 bot.on("ready", () => {
+    lm.info("Loaded! (" + bot.user.username + ") in " + bot.guilds.size + " servers!")
     console.log("Loaded! (" + bot.user.username + ") in " + bot.guilds.size + " servers!")
+    setTimeout(() => {
+        bot.editStatus("online", { name: `${config.prefix}help || ${bot.guilds.size} servers!`, type: 1, url: "https://www.twitch.tv/monstercat" })
+    }, 1000)
     commandHandler.load();
 })
 

@@ -19,11 +19,20 @@ bot.sharding = {
 };
 
 const am = require(__dirname + "/handlers/adminManager.js"), adminManager = new am(config.admins, bot)
-const ch = require(__dirname + "/handlers/commandHandler.js"), commandHandler = new ch(bot)
+const ch = require(__dirname + "/handlers/commandHandler.js"), commandHandler = new ch(bot);
+
+// important shit
 bot.logging = config.detailed_logging;
-bot.prefix = config.prefix
+bot.prefix = config.prefix;
 bot.owner_id = config.owner_id
 var commands = commandHandler.commands;
+
+//handlers (evalable)
+bot.handlers = {}
+bot.handlers.shardGenerator = shardGenerator
+bot.handlers.logManager = lm
+bot.handlers.adminManager = adminManager
+bot.handlers.commandHandler = commandHandler
 
 commands.help = {};
 commands.help.args = '';

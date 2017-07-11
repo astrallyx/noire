@@ -4,7 +4,9 @@ const config = require(__dirname + "/../config.json");
 class Admin {
     constructor(admins, bot) {
         admins.forEach((a) => {
-            if (admins.indexOf(config.owner_id) != -1) {} else admins.push(config.owner_id)
+            if (admins.indexOf(config.owner_id) != -1) {} else {
+                admins.push(config.owner_id)
+            }
         })
         this.admins = admins;
         this.bot = bot;
@@ -17,10 +19,10 @@ class Admin {
             if (response.indexOf(a) != -1) {
             } else {
                 response.push({
-                    admin_username: this.bot.users.get(a).username + "#" + this.bot.users.get(a).discriminator,
-                    admin_id: this.bot.users.get(a).id,
-                    admin_avatar: this.bot.users.get(a).avatarURL,
-                    admin_isBot: this.bot.users.get(a).bot
+                        display_name: this.bot.users.get(a).username + "#" + this.bot.users.get(a).discriminator,
+                        id: this.bot.users.get(a).id,
+                        avatar: this.bot.users.get(a).avatarURL,
+                        bot: this.bot.users.get(a).bot
                 })
             }
         })

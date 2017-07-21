@@ -1,14 +1,13 @@
-"use strict";
+"use strict"
 module.exports = {
     code: function(bot, msg, config) {
-		var start = Date.now();
+		let start = Date.now()
 		msg.channel.createMessage("Pong!").then(function(newMsg) {
-			var end = Date.now();
-			var diff = end - start
-			newMsg.edit(`Pong! [${diff}ms] taken!`);
-		});
+			let end = Date.now()
+			newMsg.edit(`Pong! [${end - start}ms] taken! (${bot.guilds.get(msg.channel.guild.id).shard.latency}ms Latency)`)
+		})
     },
     description: 'Ping the bot',
-    args: false, 
+    args: false,
     hidden: false
-};
+}

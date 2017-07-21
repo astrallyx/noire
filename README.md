@@ -1,9 +1,9 @@
 <center>
-    
+
 </center>
 
 # noire: a discord bot
-##### Project developed by [Astrallyx](github.com/astrallyx)
+##### Project developed by [Astrallyx](https://github.com/astrallyx)
 ### Features
 - [ ] Moderation Features (0%)
 - [ ] Fun Features (0%)

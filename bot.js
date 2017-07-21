@@ -1,8 +1,7 @@
 "use strict";
 
 const Eris = require("eris");
-const fs = require("fs")
-
+const fs = require("fs")s
 const config = require(__dirname + "/config.json");
 const sg = require(__dirname + "/handlers/shardGenerator.js"), shardGenerator = new sg(0)
 const logs = require(__dirname + "/handlers/logManager.js"), lm = new logs();
@@ -10,7 +9,7 @@ const logs = require(__dirname + "/handlers/logManager.js"), lm = new logs();
 
 const bot = new Eris(config.token, {
     firstShardID: 0,
-    maxShards: config.shard_max || 1
+    maxShards: (config.shard_max ? config.shard_max : 1)
 })
 
 bot.sharding = {
@@ -52,7 +51,7 @@ commands.help.code = function(bot, msg) {
             })
         }
     }
-    
+
     bot.createMessage(msg.channel.id, {
         content: '',
         embed: {
@@ -62,7 +61,7 @@ commands.help.code = function(bot, msg) {
             footer: { icon_url: bot.user.avatarURL, text: bot.user.username }
         }
     })
-    
+
 }
 
 bot.on("shardReady", (id) => {

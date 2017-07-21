@@ -1,23 +1,22 @@
-"use strict";
-const config = require(__dirname + "/../config.json");
+"use strict"
+const config = require(__dirname + "/../config.json")
 
 class Admin {
     constructor(admins, bot) {
         admins.forEach((a) => {
-            if (admins.indexOf(config.owner_id) != -1) {} else {
+            if (admins.indexOf(config.owner_id) == -1) {
                 admins.push(config.owner_id)
             }
         })
-        this.admins = admins;
-        this.bot = bot;
+        this.admins = admins
+        this.bot = bot
     }
-    
-    
+
+
     get getAdmins() {
         var response = []
         this.admins.forEach((a) => {
-            if (response.indexOf(a) != -1) {
-            } else {
+            if (response.indexOf(a) == -1) {
                 response.push({
                         display_name: this.bot.users.get(a).username + "#" + this.bot.users.get(a).discriminator,
                         id: this.bot.users.get(a).id,
@@ -26,11 +25,11 @@ class Admin {
                 })
             }
         })
-        return response;
+        return response
     }
-    
+
     get adminsMessage() {
-        var response = [];
+        var response = []
         var message
         this.getAdmins.forEach((a) => {
             response.push(a.admin_username)
@@ -41,4 +40,4 @@ class Admin {
 }
 
 
-module.exports = Admin;
+module.exports = Admin

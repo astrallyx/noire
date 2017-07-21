@@ -1,10 +1,10 @@
 "use strict";
 
-const Eris = require("eris");
-const fs = require("fs")s
-const config = require(__dirname + "/config.json");
+const Eris = require("eris")
+const fs = require("fs")
+const config = require(__dirname + "/config.json")
 const sg = require(__dirname + "/handlers/shardGenerator.js"), shardGenerator = new sg(0)
-const logs = require(__dirname + "/handlers/logManager.js"), lm = new logs();
+const logs = require(__dirname + "/handlers/logManager.js"), lm = new logs()
 // lm.run(); (Deprecated for now)
 
 const bot = new Eris(config.token, {
@@ -18,13 +18,13 @@ bot.sharding = {
 };
 
 const am = require(__dirname + "/handlers/adminManager.js"), adminManager = new am(config.admins, bot)
-const ch = require(__dirname + "/handlers/commandHandler.js"), commandHandler = new ch(bot);
+const ch = require(__dirname + "/handlers/commandHandler.js"), commandHandler = new ch(bot)
 
 // important shit
-bot.logging = config.detailed_logging;
-bot.prefix = config.prefix;
+bot.logging = config.detailed_logging
+bot.prefix = config.prefix
 bot.owner_id = config.owner_id
-var commands = commandHandler.commands;
+var commands = commandHandler.commands
 
 //handlers (evalable)
 bot.handlers = {}
@@ -33,17 +33,17 @@ bot.handlers.logManager = lm
 bot.handlers.adminManager = adminManager
 bot.handlers.commandHandler = commandHandler
 
-commands.help = {};
-commands.help.args = '';
-commands.help.description = "Displays a list of commands.";
+commands.help = {}
+commands.help.args = ''
+commands.help.description = "Displays a list of commands."
 commands.help.code = function(bot, msg) {
     let cmd = []
     for (let command in commands) {
         if (commands[command].hidden != true) {
-            let args;
+            let args
             if (commands[command].args) {
                 args = "*" + commands[command].args + "*"
-            } else if (commands[command].args == false) args = "";
+            } else if (commands[command].args == false) args = ""
             cmd.push({
                 name: `**${bot.prefix}${command}** ${args}`,
                 value: "*" + commands[command].description + "*",
@@ -83,7 +83,7 @@ bot.on("ready", () => {
     setTimeout(() => {
         bot.editStatus("online", { name: `${config.prefix}help || ${bot.guilds.size} servers!`, type: 1, url: "https://www.twitch.tv/monstercat" })
     }, 1000)
-    commandHandler.load();
+    commandHandler.load()
 })
 
 bot.on("messageCreate", (msg) => {
@@ -92,4 +92,4 @@ bot.on("messageCreate", (msg) => {
     }
 })
 
-bot.connect();
+bot.connect()

@@ -1,17 +1,19 @@
 "use strict"
-const config = require(__dirname + "/../config.json");
-const request = require("request");
+const config = require(__dirname + "/../config.json")
+const request = require("request")
 var url = "https://discordapp.com/api"
-var Promise;
+var Promise
 try {
-Promise = require('bluebird');
-} catch(e) { Promise = global.Promise }
+    Promise = require('bluebird');
+} catch(e) {
+    Promise = global.Promise
+}
 
 class ShardGen {
     constructor(first_shard) {
-        this.minimum = first_shard;
+        this.minimum = first_shard
     }
-    
+
     shard_array() {
         return new Promise((resolve, reject) => {
             request({
@@ -21,20 +23,20 @@ class ShardGen {
                     "Authorization": "Bot " + config.token
                 }, json: true
             }, (error, response, body) => {
-                let sh = [];
+                let sh = []
                 sh.push(this.minimum)
                 sh.push(body.shards)
                 resolve(sh)
             });
         });
-        
+
     }
-    
+
     get shards() {
-        var shar
+        let shar
         this.shard_array().then(shards => shar = JSON.stringify(shards))
-        return shar;
+        return shar
     }
 }
 
-module.exports = ShardGen;
+module.exports = ShardGen

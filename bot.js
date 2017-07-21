@@ -1,4 +1,4 @@
-"use strict";
+"use strict"
 
 const Eris = require("eris")
 const fs = require("fs")
@@ -15,7 +15,7 @@ const bot = new Eris(config.token, {
 bot.sharding = {
     shard_max: config.shard_max,
     shards: []
-};
+}
 
 const am = require(__dirname + "/handlers/adminManager.js"), adminManager = new am(config.admins, bot)
 const ch = require(__dirname + "/handlers/commandHandler.js"), commandHandler = new ch(bot)

@@ -4,7 +4,7 @@ const request = require("request")
 var url = "https://discordapp.com/api"
 var Promise
 try {
-    Promise = require('bluebird');
+    Promise = require('bluebird')
 } catch(e) {
     Promise = global.Promise
 }
@@ -27,8 +27,8 @@ class ShardGen {
                 sh.push(this.minimum)
                 sh.push(body.shards)
                 resolve(sh)
-            });
-        });
+            })
+        })
 
     }
 

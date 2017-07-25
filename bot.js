@@ -17,13 +17,13 @@ bot.sharding = {
     shards: []
 }
 
-const am = require(__dirname + "/handlers/adminManager.js"), adminManager = new am(config.admins, bot)
+const am = require(__dirname + "/handlers/adminManager.js"), adminManager = new am(config.admins.masters, bot)
 const ch = require(__dirname + "/handlers/commandHandler.js"), commandHandler = new ch(bot)
 
 // important shit
 bot.logging = config.detailed_logging
 bot.prefix = config.prefix
-bot.owner_id = config.owner_id
+bot.owner_id = config.admins.owner_id
 var commands = commandHandler.commands
 
 //handlers (evalable)

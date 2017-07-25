@@ -2,7 +2,7 @@
 const util = require("util")
 module.exports = {
     code: function(bot, msg, config) {
-		if (config.admins.indexOf(msg.author.id) || msg.author.id == config.owner_id) {
+		if (config.admins.masters.indexOf(msg.author.id) || msg.author.id == config.admins.owner_id) {
 		    let args = msg.content.split(`${bot.prefix}eval `).join("")
             try {
                 let ev = eval(args)

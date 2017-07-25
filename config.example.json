@@ -1,8 +1,10 @@
 {
-    "token": "",
-    "owner_id": "",
-    "prefix": "/",
+    "token": "Bot token here",
+    "prefix": "Prefix wanted here",
     "shard_max": false,
     "detailed_logging": false,
-    "admins": []
+    "admins": {
+        "owner_id": "Bot owner here",
+        "masters": ["IDs Go here", "Extend by adding more quotes", "Like this"]
+    }
 }

@@ -6,7 +6,7 @@
 ##### Project developed by [Astrallyx](https://github.com/astrallyx)
 ### Features
 - [ ] Moderation Features (0%)
-- [ ] Fun Features (0%)
+- [ ] Fun Features (5%)
 - [ ] General Features (5%)
 
 # Installation
